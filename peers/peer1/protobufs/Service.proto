@@ -16,15 +16,24 @@ service ProductService{
 */
 
 
-
-message Credentials{
-    string credentials = 1;
+service MainFunctions{
+    rpc login(Credentials) returns (OperationResponse) {}
+    rpc logout(Credentials) returns (OperationResponse) {}
+    rpc search(Credentials) returns (OperationResponse) {}
+    rpc index(Credentials) returns (OperationResponse) {}
 }
 
+//estos van a 
+
+//Este es el request de logn del cliente
+message Credentials{
+    string credentials = 1;
+    string fileName = 2;
+}
+
+//La respuesta del servidor
 message OperationResponse{
     string serverResponse = 1;
 }
 
-service MainFunctions{
-    rpc login(Credentials) returns (OperationResponse) {}
-}
+

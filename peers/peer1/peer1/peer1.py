@@ -17,6 +17,9 @@ import bootstrap
 ipAddress = socket.gethostbyname(socket.gethostname())
 channel = grpc.insecure_channel(bootstrap.localhost) #ESTO DESPUES TIENE QUE SER UN PARAMETRO DEL CONFIG
 stub = Service_pb2_grpc.MainFunctionsStub(channel)
+myFiles = bootstrap.file
+
+#------------------ SERVIDOR FLASK ------------------
 
 #iniciialar flask
 app = Flask(__name__)
@@ -43,12 +46,16 @@ def signal_handler(sig, frame):
     print("Ctrl+C detected, cleaning up and exiting...")
     # Perform cleanup actions here, like sending a message to the server
 
-    response = stub.logout(Service_pb2.Credentials(credentials=messageToServer))  
+    response = stub.logout(Service_pb2.Credentials(credentials=bootstrap.peerName))  
     print("Response received: " + str(response.serverResponse))
     sys.exit(0)
 
+#------------------ SERVIDOR FLASK ------------------
+
+
 def run():
 
+    #------------ESTO PUEDE SER DEL ARCHIVO QUE LE VOY A MANDAR----------------
     #ESTO DESPUES TIENE QUE SER UN PARAMETRO DEL CONFIG
     file_path = "image.txt"
     try:
@@ -57,6 +64,7 @@ def run():
             print("File content: " + file_content)
     except FileNotFoundError:
         print("No images found.")
+    #------------ESTO PUEDE SER DEL ARCHIVO QUE LE VOY A MANDAR----------------
 
     while(True):
 
@@ -67,29 +75,36 @@ def run():
         print("Enter 2 to search files: ")
         print("Enter 3 to index: ")
         print("Enter 4 to logout: ")
-
         #decrle al server de un peer que queiro descargar
         print("Enter 5 to download: ")
-        
 
         action = input()
 
         if action == "1":
-        
+            
             print("My IP address is: " + ipAddress)
             messageToServer = bootstrap.peerName #ESTO DESPUES TIENE QUE SER UN PARAMETRO DEL CONFIG
-            response = stub.login(Service_pb2.Credentials(credentials=messageToServer))  
+            response = stub.login(Service_pb2.Credentials(credentials=messageToServer, fileName=myFiles))  
             print("Response received: " + str(response.serverResponse))
             #enviar mis archivos al servidor central ESTO ME FALTA
 
+        #search files
         if action == "2":
-            pass
+            searchFiles = input("Ented the file you want to search: ")
+            response = stub.search(Service_pb2.Credentials(credentials=searchFiles))  
+            print(str(response.serverResponse))
 
+        #index files
         if action == "3":
             pass
 
+        #logout
         if action == "4":
-            pass
+            messageToServer = bootstrap.peerName
+            response = stub.search(Service_pb2.Credentials(credentials=messageToServer))  
+            print("Response received: " + str(response.serverResponse))
+
+            sys.exit(0)
 
         if action == "5":
             send_download()

@@ -14,7 +14,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\rService.proto\"\"\n\x0b\x43redentials\x12\x13\n\x0b\x63redentials\x18\x01 \x01(\t\"+\n\x11OperationResponse\x12\x16\n\x0eserverResponse\x18\x01 \x01(\t2j\n\rMainFunctions\x12+\n\x05login\x12\x0c.Credentials\x1a\x12.OperationResponse\"\x00\x12,\n\x06logout\x12\x0c.Credentials\x1a\x12.OperationResponse\"\x00\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\rService.proto\"4\n\x0b\x43redentials\x12\x13\n\x0b\x63redentials\x18\x01 \x01(\t\x12\x10\n\x08\x66ileName\x18\x02 \x01(\t\"+\n\x11OperationResponse\x12\x16\n\x0eserverResponse\x18\x01 \x01(\t2\xc5\x01\n\rMainFunctions\x12+\n\x05login\x12\x0c.Credentials\x1a\x12.OperationResponse\"\x00\x12,\n\x06logout\x12\x0c.Credentials\x1a\x12.OperationResponse\"\x00\x12,\n\x06search\x12\x0c.Credentials\x1a\x12.OperationResponse\"\x00\x12+\n\x05index\x12\x0c.Credentials\x1a\x12.OperationResponse\"\x00\x62\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -22,9 +22,9 @@ _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'Service_pb2', _globals)
 if _descriptor._USE_C_DESCRIPTORS == False:
   DESCRIPTOR._options = None
   _globals['_CREDENTIALS']._serialized_start=17
-  _globals['_CREDENTIALS']._serialized_end=51
-  _globals['_OPERATIONRESPONSE']._serialized_start=53
-  _globals['_OPERATIONRESPONSE']._serialized_end=96
-  _globals['_MAINFUNCTIONS']._serialized_start=98
-  _globals['_MAINFUNCTIONS']._serialized_end=204
+  _globals['_CREDENTIALS']._serialized_end=69
+  _globals['_OPERATIONRESPONSE']._serialized_start=71
+  _globals['_OPERATIONRESPONSE']._serialized_end=114
+  _globals['_MAINFUNCTIONS']._serialized_start=117
+  _globals['_MAINFUNCTIONS']._serialized_end=314
 # @@protoc_insertion_point(module_scope)

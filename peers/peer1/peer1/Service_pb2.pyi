@@ -5,10 +5,12 @@ from typing import ClassVar as _ClassVar, Optional as _Optional
 DESCRIPTOR: _descriptor.FileDescriptor
 
 class Credentials(_message.Message):
-    __slots__ = ("credentials",)
+    __slots__ = ("credentials", "fileName")
     CREDENTIALS_FIELD_NUMBER: _ClassVar[int]
+    FILENAME_FIELD_NUMBER: _ClassVar[int]
     credentials: str
-    def __init__(self, credentials: _Optional[str] = ...) -> None: ...
+    fileName: str
+    def __init__(self, credentials: _Optional[str] = ..., fileName: _Optional[str] = ...) -> None: ...
 
 class OperationResponse(_message.Message):
     __slots__ = ("serverResponse",)

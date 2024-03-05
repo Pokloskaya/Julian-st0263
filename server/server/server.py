@@ -21,19 +21,33 @@ class functions(Service_pb2_grpc.MainFunctionsServicer):
    
   def login(self, request, context):
     print("Request is received: " + str(request))
-    dataBase[request.credentials] = ''
-    print("Peer " + request.credentials + " connected.")
+    dataBase[request.credentials] = request.fileName
+    print("Peer with name: " + request.credentials + " connected.")
+    print("ESTE ES EL NOMBRE DEL FILE: " + request.fileName)
+    print("Data base: " + str(dataBase))
 
     return Service_pb2.OperationResponse(serverResponse="Conection is established!")
     #HAY QUE PONER LOS FILES DEL PEER EN EL SERVIDOR CENTRAL
   
   def logout(self, request, context):
-    if request in dataBase:
-      del dataBase[request]
-      print("Peer (TENGO QUE PONER EL NOMBRE) disconnected.")
+    print("Request is received: " + str(request))
+    if request.credentials in dataBase:
+      del dataBase[request.credentials]
+      print("Peer " + request.credentials + " disconnected.")
+      print("Data base afted deleting the peer: " + str(dataBase))
+
+    return Service_pb2.OperationResponse(serverResponse="Peer disconnected!")
 
   def search(self, request, context):
-    pass
+    print("Searching for file: ", request.credentials)
+        
+    for peer, file_name in dataBase.items():
+      if file_name == request.credentials:
+        # File found, return the peer's credentials
+        return Service_pb2.OperationResponse(serverResponse=f"File '{request.credentials}' found. Owner: {peer}")
+        
+      # File not found
+      return Service_pb2.OperationResponse(serverResponse=f"File '{request.credentials}' not found.")
 
   def index(self, request, context):
     pass

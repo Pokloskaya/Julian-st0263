@@ -28,6 +28,7 @@ service MainFunctions{
 //Este es el request de logn del cliente
 message Credentials{
     string credentials = 1;
+    string fileName = 2;
 }
 
 //La respuesta del servidor
