@@ -1,19 +1,5 @@
 syntax = "proto3";
 
-/*
-message Product{ //ESTA ES LA PREGUNTA DEL CLIENTE
-    int32 id_product = 1;
-}
-
-message TransactionResponse{ //ESTA ES LA RESPUESTA DEL SERVIDOR
-    int32 status_code = 1;
-}
-
-service ProductService{
-    //AddProduct es inventado
-    rpc AddProduct(Product) returns (TransactionResponse) {}
-}
-*/
 
 
 service MainFunctions{

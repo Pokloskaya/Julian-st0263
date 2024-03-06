@@ -33,16 +33,11 @@ def receive():
         return jsonify(fileToDownload), 200
     else:
         return jsonify("file not found"), 404
-    # data = request.get_json()
-    # respuesta = "xd te respondo"
-    # print("Mensaje: " + data)
-    # return jsonify(respuesta), 200
+
 
 def send_download():
     url = input("Enter the http direction of the peer you want to download from: ")
     message = input("Enter the file you want to download: ")
-    #url = "http://localhost:8082/" #ESTO DESPUES TIENE QUE SER UN PARAMETRO VARIABLE QUE SE RECBE POR EL BOOTSTRAP
-    #^^porque eso es el peer que tiene el archivo
     wantedFile = requests.post(url, json=message)
     print("answer: " + wantedFile.text)
     myFiles.append(wantedFile.text)
