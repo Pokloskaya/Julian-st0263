@@ -23,7 +23,8 @@ class functions(Service_pb2_grpc.MainFunctionsServicer):
     print("Request is received: " + str(request))
     dataBase[request.credentials] = request.fileName
     print("Peer with name: " + request.credentials + " connected.")
-    print("ESTE ES EL NOMBRE DEL FILE: " + request.fileName)
+
+
     print("Data base: " + str(dataBase))
 
     return Service_pb2.OperationResponse(serverResponse="Conection is established!")
@@ -39,18 +40,21 @@ class functions(Service_pb2_grpc.MainFunctionsServicer):
     return Service_pb2.OperationResponse(serverResponse="Peer disconnected!")
 
   def search(self, request, context):
-    print("Searching for file: ", request.credentials)
-        
-    for peer, file_name in dataBase.items():
-      if file_name == request.credentials:
-        # File found, return the peer's credentials
-        return Service_pb2.OperationResponse(serverResponse=f"File '{request.credentials}' found. Owner: {peer}")
-        
-      # File not found
-      return Service_pb2.OperationResponse(serverResponse=f"File '{request.credentials}' not found.")
+    print("Searching for file:", request.credentials)
+    
+    # Iterate through each peer in the database
+    for peer, files in dataBase.items():
+        # Check if the requested file is in the list of files for the current peer
+        if request.credentials in files:
+            # File found, return the peer's credentials
+            return Service_pb2.OperationResponse(serverResponse=f"File '{request.credentials}' found. Owner: {peer}")
+    
+    # File not found for any peer
+    return Service_pb2.OperationResponse(serverResponse=f"File '{request.credentials}' not found.")
+
 
   def index(self, request, context):
-    pass
+    print("Request is received: " + str(request))
  
 def serve():
   server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))

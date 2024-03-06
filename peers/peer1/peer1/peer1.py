@@ -17,7 +17,10 @@ import bootstrap
 ipAddress = socket.gethostbyname(socket.gethostname())
 channel = grpc.insecure_channel(bootstrap.localhost) #ESTO DESPUES TIENE QUE SER UN PARAMETRO DEL CONFIG
 stub = Service_pb2_grpc.MainFunctionsStub(channel)
-myFiles = bootstrap.file
+myFiles = []
+myFiles.append(bootstrap.file) 
+myFiles.append("exampleFile69.txt")
+print(myFiles)
 
 #------------------ SERVIDOR FLASK ------------------
 
@@ -84,6 +87,7 @@ def run():
             
             print("My IP address is: " + ipAddress)
             messageToServer = bootstrap.peerName #ESTO DESPUES TIENE QUE SER UN PARAMETRO DEL CONFIG
+            print("este es el fle name: " + str(myFiles))
             response = stub.login(Service_pb2.Credentials(credentials=messageToServer, fileName=myFiles))  
             print("Response received: " + str(response.serverResponse))
             #enviar mis archivos al servidor central ESTO ME FALTA

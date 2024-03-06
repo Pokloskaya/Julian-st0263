@@ -14,7 +14,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\rService.proto\"4\n\x0b\x43redentials\x12\x13\n\x0b\x63redentials\x18\x01 \x01(\t\x12\x10\n\x08\x66ileName\x18\x02 \x01(\t\"+\n\x11OperationResponse\x12\x16\n\x0eserverResponse\x18\x01 \x01(\t2\xc5\x01\n\rMainFunctions\x12+\n\x05login\x12\x0c.Credentials\x1a\x12.OperationResponse\"\x00\x12,\n\x06logout\x12\x0c.Credentials\x1a\x12.OperationResponse\"\x00\x12,\n\x06search\x12\x0c.Credentials\x1a\x12.OperationResponse\"\x00\x12+\n\x05index\x12\x0c.Credentials\x1a\x12.OperationResponse\"\x00\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\rService.proto\"4\n\x0b\x43redentials\x12\x13\n\x0b\x63redentials\x18\x01 \x01(\t\x12\x10\n\x08\x66ileName\x18\x02 \x03(\t\"+\n\x11OperationResponse\x12\x16\n\x0eserverResponse\x18\x01 \x01(\t2\xc5\x01\n\rMainFunctions\x12+\n\x05login\x12\x0c.Credentials\x1a\x12.OperationResponse\"\x00\x12,\n\x06logout\x12\x0c.Credentials\x1a\x12.OperationResponse\"\x00\x12,\n\x06search\x12\x0c.Credentials\x1a\x12.OperationResponse\"\x00\x12+\n\x05index\x12\x0c.Credentials\x1a\x12.OperationResponse\"\x00\x62\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
