@@ -6,12 +6,14 @@ from typing import ClassVar as _ClassVar, Iterable as _Iterable, Optional as _Op
 DESCRIPTOR: _descriptor.FileDescriptor
 
 class Credentials(_message.Message):
-    __slots__ = ("credentials", "fileName")
-    CREDENTIALS_FIELD_NUMBER: _ClassVar[int]
+    __slots__ = ("peerName", "puertoPservidor", "fileName")
+    PEERNAME_FIELD_NUMBER: _ClassVar[int]
+    PUERTOPSERVIDOR_FIELD_NUMBER: _ClassVar[int]
     FILENAME_FIELD_NUMBER: _ClassVar[int]
-    credentials: str
+    peerName: str
+    puertoPservidor: str
     fileName: _containers.RepeatedScalarFieldContainer[str]
-    def __init__(self, credentials: _Optional[str] = ..., fileName: _Optional[_Iterable[str]] = ...) -> None: ...
+    def __init__(self, peerName: _Optional[str] = ..., puertoPservidor: _Optional[str] = ..., fileName: _Optional[_Iterable[str]] = ...) -> None: ...
 
 class OperationResponse(_message.Message):
     __slots__ = ("serverResponse",)

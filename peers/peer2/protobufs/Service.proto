@@ -27,8 +27,9 @@ service MainFunctions{
 
 //Este es el request de logn del cliente
 message Credentials{
-    string credentials = 1;
-    repeated string fileName = 2;
+    string peerName = 1;
+    string puertoPservidor = 2;
+    repeated string fileName = 3;
 }
 
 //La respuesta del servidor

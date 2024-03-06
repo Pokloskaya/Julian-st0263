@@ -8,11 +8,6 @@ import bootstrap
 
 HOST = bootstrap.localhost
 
-# FUNCIONES QUE VA A TENER EL SERVIDOR
-#login()
-#logout()
-#buscar()
-#indexar()
 
 #Base de datos de los peers
 dataBase = {}
@@ -20,37 +15,33 @@ dataBase = {}
 class functions(Service_pb2_grpc.MainFunctionsServicer):
    
   def login(self, request, context):
-    print("Request is received: " + str(request))
-    dataBase[request.credentials] = request.fileName
-    print("Peer with name: " + request.credentials + " connected.")
-
-
+    #print("Request is received: " + str(request))
+    dataBase[request.peerName] = request.fileName
+    print("Peer with name: " + request.peerName + " connected.")
     print("Data base: " + str(dataBase))
 
     return Service_pb2.OperationResponse(serverResponse="Conection is established!")
-    #HAY QUE PONER LOS FILES DEL PEER EN EL SERVIDOR CENTRAL
   
   def logout(self, request, context):
     print("Request is received: " + str(request))
-    if request.credentials in dataBase:
-      del dataBase[request.credentials]
-      print("Peer " + request.credentials + " disconnected.")
-      print("Data base afted deleting the peer: " + str(dataBase))
+    if request.peerName in dataBase:
+      del dataBase[request.peerName]
+      print("Peer " + request.peerName + " disconnected.")
 
     return Service_pb2.OperationResponse(serverResponse="Peer disconnected!")
 
   def search(self, request, context):
-    print("Searching for file:", request.credentials)
+    print("Searching for file:", request.peerName)
     
     # Iterate through each peer in the database
     for peer, files in dataBase.items():
         # Check if the requested file is in the list of files for the current peer
-        if request.credentials in files:
+        if request.peerName in files:
             # File found, return the peer's credentials
-            return Service_pb2.OperationResponse(serverResponse=f"File '{request.credentials}' found. Owner: {peer}")
+            return Service_pb2.OperationResponse(serverResponse=f"File '{request.peerName}' found. Owner: {peer}")
     
     # File not found for any peer
-    return Service_pb2.OperationResponse(serverResponse=f"File '{request.credentials}' not found.")
+    return Service_pb2.OperationResponse(serverResponse=f"File '{request.peerName}' not found.")
 
 
   def index(self, request, context):

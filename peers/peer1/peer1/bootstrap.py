@@ -1,4 +1,4 @@
-peerName = "peer1"
+peerName = "peer1--http://localhost:8081/"
 file = "exampleFile1.txt"
 localhost='localhost:8080'
-puertoFlask=8081
+puertoPserver=8081
